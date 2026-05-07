@@ -2,7 +2,9 @@
 
 Exercises:
 
+(done)    
 1. Count and print how many taps occur.
+(done)
 2. Decrease the number of tiles to a 4x4 grid.
 3. Detect when all tiles are revealed.
 4. Center single-digit tile.
@@ -15,10 +17,15 @@ from turtle import *
 from freegames import path
 
 car = path('car.gif')
-tiles = list(range(32)) * 2
+tiles = list(range(8)) * 2
 state = {'mark': None}
-hide = [True] * 64
+hide = [True] * 16
+clicks = 0
 
+def click(x, y):
+    """Count how many taps occur."""
+    global clicks
+    clicks += 1 
 
 def square(x, y):
     """Draw white square with black outline at (x, y)."""
@@ -28,19 +35,19 @@ def square(x, y):
     color('black', 'white')
     begin_fill()
     for count in range(4):
-        forward(50)
+        forward(100)
         left(90)
     end_fill()
 
 
 def index(x, y):
     """Convert (x, y) coordinates to tiles index."""
-    return int((x + 200) // 50 + ((y + 200) // 50) * 8)
+    return int((x + 200) // 100 + ((y + 200) // 100) * 4)
 
 
 def xy(count):
     """Convert tiles count to (x, y) coordinates."""
-    return (count % 8) * 50 - 200, (count // 8) * 50 - 200
+    return (count % 4) * 100 - 200, (count // 4) * 100 - 200
 
 
 def tap(x, y):
@@ -55,6 +62,9 @@ def tap(x, y):
         hide[mark] = False
         state['mark'] = None
 
+def play(x, y):
+    click(x, y)
+    tap(x, y)
 
 def draw():
     """Draw image and tiles."""
@@ -63,7 +73,7 @@ def draw():
     shape(car)
     stamp()
 
-    for count in range(64):
+    for count in range(16):
         if hide[count]:
             x, y = xy(count)
             square(x, y)
@@ -77,6 +87,11 @@ def draw():
         color('black')
         write(tiles[mark], font=('Arial', 30, 'normal'))
 
+    up()
+    goto(-190, 170)
+    color('black')
+    write(f'Taps: {clicks}', font = ('Arial', 12))     
+
     update()
     ontimer(draw, 100)
 
@@ -86,6 +101,6 @@ setup(420, 420, 370, 0)
 addshape(car)
 hideturtle()
 tracer(False)
-onscreenclick(tap)
+onscreenclick(play)
 draw()
 done()
