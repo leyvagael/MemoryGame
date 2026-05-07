@@ -13,8 +13,9 @@ from turtle import *
 
 from freegames import path
 
+letters = ['a', 'b', 'c' , 'd', 'e', 'f', 'g', 'h']
 car = path('car.gif')
-tiles = list(range(8)) * 2
+tiles = letters * 2
 state = {'mark': None}
 hide = [True] * 16
 clicks = 0
