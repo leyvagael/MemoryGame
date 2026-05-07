@@ -3,8 +3,8 @@
 Exercises
 1. Count and print how many taps occur. # DONE
 2. Decrease the number of tiles to a 4x4 grid. # DONE
-3. Detect when all tiles are revealed. # FIX
-4. Center single-digit tile. # TODO
+3. Detect when all tiles are revealed. # DONE
+4. Center single-digit tile. # DONE
 5. Use letters instead of tiles. # DONE
 """
 
