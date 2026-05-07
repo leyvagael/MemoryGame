@@ -60,10 +60,6 @@ def tap(x, y):
         hide[mark] = False
         state['mark'] = None
 
-        if not any(hide):
-            write("You win!", align = 'center', font = ('Arial', 30, 'normal'))
-
-
 def play(x, y):
     click(x, y)
     tap(x, y)
@@ -85,7 +81,7 @@ def draw():
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
-        goto(x+8, y+1) #Center here
+        goto(x+40, y+25) #Center here
         color('black')
         write(tiles[mark], font=('Arial', 30, 'normal'))
 
@@ -97,6 +93,8 @@ def draw():
     update()
 
     if not any(hide):
+        goto(0, 0)
+        write("You win!", align='center', font=('Arial', 30, 'normal'))
         return
 
     ontimer(draw, 100)
