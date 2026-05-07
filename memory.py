@@ -2,11 +2,11 @@
 
 Exercises:
 
-1. Count and print how many taps occur.
-2. Decrease the number of tiles to a 4x4 grid.
-3. Detect when all tiles are revealed.
-4. Center single-digit tile.
-5. Use letters instead of tiles.
+1. Count and print how many taps occur. # TODO
+2. Decrease the number of tiles to a 4x4 grid. # TODO
+3. Detect when all tiles are revealed. #TODO
+4. Center single-digit tile. # TODO
+5. Use letters instead of tiles. # TODO
 """
 
 from random import *
@@ -55,6 +55,9 @@ def tap(x, y):
         hide[mark] = False
         state['mark'] = None
 
+        if not any(hide):
+            write("You win!", align = 'center', font = ('Arial', 30, 'normal'))
+
 
 def draw():
     """Draw image and tiles."""
@@ -73,7 +76,7 @@ def draw():
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
-        goto(x + 2, y)
+        goto(x+8, y+1) #Center here
         color('black')
         write(tiles[mark], font=('Arial', 30, 'normal'))
 
